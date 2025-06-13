@@ -55,7 +55,7 @@ Once installed, you can launch the engine with:
 toka model=meta-llama/Llama-3.2-1B-Instruct
 
 # make a request to the engine (this command just wraps the OpenAI client)
-toka ping prompt='tell me a joke' max_tokens=256 chat=True
+toka-ping prompt='tell me a joke' max_tokens=256 chat=True
 
 # launch a 70B model with pipeline parallelism across 8 gpus
 toka model=meta-llama/Llama-3.1-70B-Instruct kv_cache_num_tokens='(512 * 1024)' pp_size=8
