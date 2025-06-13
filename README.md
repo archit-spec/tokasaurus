@@ -1,5 +1,6 @@
 # Tokasaurus: The Little (LLM) Engine That Could!
 
+Check out our blog post [here](https://scalingintelligence.stanford.edu/blogs/tokasaurus/)!
 
 ## Table of Contents
 
@@ -156,3 +157,19 @@ The server and manager are each their own process, with the model worker corresp
 When data parallelism is used, each replica has its own manager process and set of model worker processes. However, all data parallel replicas share the same server process which handles load balancing.
 
 The entry point for starting up the server and kicking off all the processes is `tokasaurus/entry.py`.
+
+
+## Citation
+
+If you use Tokasaurus in your research, please cite:
+
+```bibtex
+
+@misc{juravsky2025tokasaurus,
+  author       = {Jordan Juravsky and Ayush Chakravarthy and Ryan Ehrlich and Sabri Eyuboglu and Bradley Brown and Joseph Shetaye and Christopher R{\'e} and Azalia Mirhoseini},
+  title        = {Tokasaurus: An LLM Inference Engine for High-Throughput Workloads},
+  year         = {2025},
+  howpublished = {\url{https://scalingintelligence.stanford.edu/blogs/tokasaurus/}}
+}
+
+```
