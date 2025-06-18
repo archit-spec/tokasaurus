@@ -523,15 +523,11 @@ class LlamaModel(nn.Module):
         dummy_float_input = torch.empty((0, config.hidden_size), dtype=torch.float32)
 
         cos, sin = self.rope(dummy_float_input, position_ids)
-        assert cos.dtype == torch.float32
-        assert sin.dtype == torch.float32
         self.register_buffer("rope_cos", cos.squeeze(0), persistent=False)
         self.register_buffer("rope_sin", sin.squeeze(0), persistent=False)
 
     def forward(self, batch_state: BatchState):
         out: BatchState = self.embed_tokens(batch_state)
-        assert self.rope_cos.dtype == torch.float32
-        assert self.rope_sin.dtype == torch.float32
         cos = self.rope_cos[batch_state.position_ids].to(out.hidden_states.dtype)
         sin = self.rope_sin[batch_state.position_ids].to(out.hidden_states.dtype)
         out.position_embeddings = (cos, sin)
