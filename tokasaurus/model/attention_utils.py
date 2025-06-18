@@ -101,8 +101,8 @@ def append_to_kv_cache(
     flat_k_cache = k_cache.view(-1, num_key_value_heads, head_dim)
     flat_v_cache = v_cache.view(-1, num_key_value_heads, head_dim)
 
-    flat_k_cache[token_indices] = key
-    flat_v_cache[token_indices] = value
+    flat_k_cache[token_indices] = key.to(flat_k_cache.dtype)
+    flat_v_cache[token_indices] = value.to(flat_v_cache.dtype)
 
 
 def tokasaurus_attention(
