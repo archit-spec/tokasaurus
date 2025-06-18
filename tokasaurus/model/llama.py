@@ -255,9 +255,9 @@ class LlamaAttention(nn.Module):
         value_states = value_states.to(target_dtype)
 
         raw_attn_output = self.attn_fn(
-            ragged_q=query_states,
-            ragged_k=key_states,
-            ragged_v=value_states,
+            ragged_q=query_states.to(target_dtype),
+            ragged_k=key_states.to(target_dtype),
+            ragged_v=value_states.to(target_dtype),
             k_cache=self.layer_cache.k_cache,
             v_cache=self.layer_cache.v_cache,
         ).clone()  # HACK: torch compile crashes with some weakref RuntimeError without this clone.
