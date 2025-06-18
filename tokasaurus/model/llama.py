@@ -252,6 +252,7 @@ class LlamaAttention(nn.Module):
 
         query_states = query_states.to(dtype)
         key_states = key_states.to(dtype)
+        value_states = value_states.to(dtype)
 
         raw_attn_output = self.attn_fn(
             ragged_q=query_states,
