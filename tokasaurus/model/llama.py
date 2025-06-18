@@ -240,7 +240,7 @@ class LlamaAttention(nn.Module):
 
         cos, sin = batch_state.position_embeddings
 
-        dtype = query_states.dtype
+        target_dtype = batch_state.hidden_states.dtype
 
         query_states, key_states = apply_rotary_pos_emb(
             query_states,
@@ -250,9 +250,9 @@ class LlamaAttention(nn.Module):
             unsqueeze_dim=1,  # unsqueeze dim = head dim on q/k
         )
 
-        query_states = query_states.to(dtype)
-        key_states = key_states.to(dtype)
-        value_states = value_states.to(dtype)
+        query_states = query_states.to(target_dtype)
+        key_states = key_states.to(target_dtype)
+        value_states = value_states.to(target_dtype)
 
         raw_attn_output = self.attn_fn(
             ragged_q=query_states,
