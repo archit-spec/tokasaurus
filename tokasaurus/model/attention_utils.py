@@ -126,6 +126,8 @@ def tokasaurus_attention(
         v_cache=v_cache,
     )
 
+    # Ensure ragged_q has the correct dtype before splitting
+    ragged_q = ragged_q.to(k_cache.dtype)
     prefill_q, hydragen_q, decode_q = attn_info.split_q(ragged_q)
 
     # the key difference between the hydragen shared
