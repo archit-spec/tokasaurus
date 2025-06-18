@@ -758,6 +758,8 @@ class LlamaForCausalLM(nn.Module):
         if can_load_from_safetensors(model_path):
             print("Loading from safetensors")
             model.load_from_safetensors(model_path)
+            # Convert model parameters to the target dtype
+            model = model.to(dtype=dtype)
         else:
             print("Loading from hf")
             model.load_from_hf_pretrained(model_path, device, dtype)
