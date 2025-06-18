@@ -531,8 +531,8 @@ class LlamaModel(nn.Module):
         out: BatchState = self.embed_tokens(batch_state)
         assert self.rope_cos.dtype == torch.float32
         assert self.rope_sin.dtype == torch.float32
-        cos = self.rope_cos[batch_state.position_ids]
-        sin = self.rope_sin[batch_state.position_ids]
+        cos = self.rope_cos[batch_state.position_ids].to(out.hidden_states.dtype)
+        sin = self.rope_sin[batch_state.position_ids].to(out.hidden_states.dtype)
         out.position_embeddings = (cos, sin)
 
         for layer in self.layers:
