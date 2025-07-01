@@ -1,0 +1,47 @@
+[
+  {
+    "id": "security_audit",
+    "prompt": "Perform a comprehensive security audit of the Python files in this codebase. Look for potential vulnerabilities, unsafe practices, and security recommendations.",
+    "description": "Security Audit",
+    "priority": 3,
+    "max_turns": 6,
+    "tools_allowed": ["Read", "Glob", "Grep"],
+    "dependencies": []
+  },
+  {
+    "id": "performance_analysis",
+    "prompt": "Analyze the performance characteristics of the codebase. Identify bottlenecks, memory usage patterns, and optimization opportunities.",
+    "description": "Performance Analysis",
+    "priority": 2,
+    "max_turns": 5,
+    "tools_allowed": ["Read", "Glob", "Grep"],
+    "dependencies": []
+  },
+  {
+    "id": "api_documentation",
+    "prompt": "Generate comprehensive API documentation for all public functions and classes in the codebase. Include examples and usage patterns.",
+    "description": "API Documentation Generation",
+    "priority": 1,
+    "max_turns": 7,
+    "tools_allowed": ["Read", "Write", "Glob", "Grep"],
+    "dependencies": ["security_audit"]
+  },
+  {
+    "id": "refactor_suggestions",
+    "prompt": "Analyze the codebase and provide detailed refactoring suggestions to improve maintainability, readability, and adherence to Python best practices.",
+    "description": "Refactoring Analysis",
+    "priority": 2,
+    "max_turns": 6,
+    "tools_allowed": ["Read", "Glob", "Grep"],
+    "dependencies": ["performance_analysis"]
+  },
+  {
+    "id": "test_coverage",
+    "prompt": "Analyze test coverage and create comprehensive test plans for any uncovered functionality. Suggest unit tests, integration tests, and edge cases.",
+    "description": "Test Coverage Analysis",
+    "priority": 1,
+    "max_turns": 5,
+    "tools_allowed": ["Read", "Write", "Glob", "Grep"],
+    "dependencies": ["security_audit", "performance_analysis"]
+  }
+]
